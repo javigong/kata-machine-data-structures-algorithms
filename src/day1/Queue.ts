@@ -14,9 +14,10 @@ export default class Queue<T> {
     }
 
     enqueue(item: T): void {
-        const node = {value: item} as Node<T>; // create new node
+        const node = { value: item } as Node<T>; // create new node
         this.length++;
-        if (!this.tail) { // if tail is undefined add new node as tail and head
+        if (!this.tail) {
+            // if tail is undefined add new node as tail and head
             this.tail = this.head = node;
             return;
         }
@@ -31,6 +32,8 @@ export default class Queue<T> {
         }
 
         this.length--;
+
+        // if the head is the last node of the queue, set tail to undefined
         if (this.length === 0) {
             this.tail = undefined;
         }
@@ -40,7 +43,7 @@ export default class Queue<T> {
 
         // free (for some lang without garbage collector)
         head.next = undefined;
-        
+
         return head.value; // return head value
     }
 
