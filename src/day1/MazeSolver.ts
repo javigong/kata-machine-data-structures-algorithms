@@ -75,6 +75,7 @@ export default function solve(
     const seen: boolean[][] = [];
     const path: Point[] = [];
 
+    // Create seen 2d boolean array filled with false
     for (let i = 0; i < maze.length; i++) {
         seen.push(new Array(maze[0].length).fill(false));
     }
