@@ -4,7 +4,7 @@ function qs(arr: number[], lo: number, hi: number): void {
         return;
     }
 
-    // get the pivot index from our quick sort
+    // get the pivot index after partition did a weak sort setting the pivot in the correct position
     const pivotIdx = partition(arr, lo, hi);
 
     qs(arr, lo, pivotIdx - 1);
