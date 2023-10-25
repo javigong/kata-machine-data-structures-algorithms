@@ -38,7 +38,7 @@ export default class DoublyLinkedList<T> {
         if (idx > this.length) {
             throw new Error("Index provided is outside limits.");
         }
-        
+
         if (idx === this.length) {
             this.append(item);
             return;
@@ -46,24 +46,17 @@ export default class DoublyLinkedList<T> {
             this.prepend(item);
             return;
         }
-        
+
         // traverse until the index and then insert the node
         this.length++;
-        let curr = this.head;
-        for (let i = 0; curr && i < idx; ++i) {
-            curr = curr.next;
-        }
-        
-        curr = curr as Node<T>;
+        let curr = this.getAt(idx) as Node<T>;
+
         // create node with value to insert
         const node = { value: item } as Node<T>;
         node.next = curr;
         node.prev = curr.prev;
         curr.prev = node;
-        // ???
-        // if (curr.prev) {
-        //     curr.prev.next = curr;
-        // }
+
         if (node.prev) {
             node.prev.next = node;
         }
@@ -71,9 +64,9 @@ export default class DoublyLinkedList<T> {
     append(item: T): void {
         // first create a node and attach/append to the tail
         // then tail equals to the node
-        
+
         this.length++;
-        const node = {value:item} as Node<T>;
+        const node = { value: item } as Node<T>;
         if (!this.tail) {
             this.head = this.tail = node;
             return;
@@ -82,10 +75,77 @@ export default class DoublyLinkedList<T> {
         node.prev = this.tail;
         this.tail.next = node;
         this.tail = node;
-        
-        if ()
     }
-    remove(item: T): T | undefined {}
-    get(idx: number): T | undefined {}
-    removeAt(idx: number): T | undefined {}
+
+    remove(item: T): T | undefined {
+        // traverse to find item
+        let curr = this.head;
+        for (let i = 0; curr && i < this.length; ++i) {
+            if (curr.value === item) {
+                break;
+            }
+            curr = curr.next;
+        }
+
+        if (!curr) {
+            return undefined;
+        }
+
+        return this.removeNode(curr);
+    }
+
+    get(idx: number): T | undefined {
+        return this.getAt(idx)?.value;
+    }
+
+    removeAt(idx: number): T | undefined {
+        const node = this.getAt(idx);
+
+        if (!node) {
+            return undefined;
+        }
+        
+        return this.removeNode(node);
+    }
+
+    private removeNode(node: Node<T>): T | undefined {
+        // remove item
+        this.length--;
+
+        if (this.length === 0) {
+            const out = this.head?.value;
+            this.head = this.tail = undefined;
+            return out;
+        }
+   
+        if (node.prev) {
+            node.prev.next = node.next;
+        }
+ 
+        if (node.next) {
+            node.next.prev = node.prev;
+        }
+
+        if (node === this.head) {
+            this.head = node.next;
+        }
+
+        if (node === this.tail) {
+            this.tail = node.prev;
+        }
+
+        node.prev = node.next = undefined;
+        
+        return node.value;
+    }
+
+    private getAt(idx: number): Node<T> | undefined {
+        let curr = this.head;
+
+        for (let i = 0; curr && i < idx; ++i) {
+            curr = curr.next;
+        }
+
+        return curr;
+    }
 }
