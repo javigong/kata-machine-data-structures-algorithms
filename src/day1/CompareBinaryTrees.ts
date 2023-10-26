@@ -2,15 +2,17 @@ export default function compare(
     a: BinaryNode<number> | null,
     b: BinaryNode<number> | null,
 ): boolean {
-    // base case with all comparisons being true
-    // it's only met when going all down to the bottom doing all the recursions
+    // base cases
+    
+    // structural check, when meet bottom together after all the comparisons
     if (a === null && b === null) {
         return true;
     }
-    // base cases of comparison being false
+    // structural check
     if (a === null || b === null) {
         return false;
     }
+    // value check
     if (a.value !== b.value) {
         return false;
     }
