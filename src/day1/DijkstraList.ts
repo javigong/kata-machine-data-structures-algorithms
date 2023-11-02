@@ -25,11 +25,10 @@ export default function dijsktra_list(
     sink: number,
     arr: WeightedAdjacencyList,
 ): number[] {
-
     const seen = new Array(arr.length).fill(false);
     const prev = new Array(arr.length).fill(-1);
     const dists = new Array(arr.length).fill(Infinity);
-    
+
     dists[source] = 0;
 
     while (hasUnvisited(seen, dists)) {
@@ -45,8 +44,19 @@ export default function dijsktra_list(
 
             const dist = dists[curr] + edge.weight;
             if (dist < dists[edge.to]) {
-              dist[edge.to];
+                dists[edge.to] = dist;
+                prev[edge.to] = curr;
             }
-          }
+        }
     }
+
+    const out: number[] = [];
+    let curr = sink;
+
+    while (prev[curr] !== -1) {
+        out.push(curr);
+        curr = prev[curr];
+    }
+
+    return [source, ...out.reverse()];
 }
