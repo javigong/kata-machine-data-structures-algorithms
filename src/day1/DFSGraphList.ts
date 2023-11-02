@@ -5,6 +5,8 @@ function walk(
     seen: boolean[],
     path: number[],
 ): boolean {
+  // O(V + E) time complexity, v for vertices, e for edges
+
     // base cases
 
     if (seen[curr]) {
@@ -19,7 +21,7 @@ function walk(
     if (curr === needle) {
         return true;
     }
-    
+
     // recurse
     const list = graph[curr];
     for (let i = 0; i < list.length; i++) {
