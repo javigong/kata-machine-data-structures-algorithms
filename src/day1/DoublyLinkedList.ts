@@ -104,7 +104,7 @@ export default class DoublyLinkedList<T> {
         if (!node) {
             return undefined;
         }
-        
+
         return this.removeNode(node);
     }
 
@@ -117,11 +117,11 @@ export default class DoublyLinkedList<T> {
             this.head = this.tail = undefined;
             return out;
         }
-   
+
         if (node.prev) {
             node.prev.next = node.next;
         }
- 
+
         if (node.next) {
             node.next.prev = node.prev;
         }
@@ -135,7 +135,7 @@ export default class DoublyLinkedList<T> {
         }
 
         node.prev = node.next = undefined;
-        
+
         return node.value;
     }
 

@@ -2,7 +2,7 @@ export default function bfs(head: BinaryNode<number>, needle: number): boolean {
     // queue
     const q: (BinaryNode<number> | null | undefined)[] = [head];
 
-    // dequeue/shift node from the queue, visit node/search, enqueue its children 
+    // dequeue/shift node from the queue, visit node/search, enqueue its children
     while (q.length) {
         // const curr = q.shift() as BinaryNode<number>;
 
@@ -11,7 +11,7 @@ export default function bfs(head: BinaryNode<number>, needle: number): boolean {
 
         // if null dequeue the next node
         if (!curr) {
-          continue;
+            continue;
         }
 
         // visit node/search
@@ -22,7 +22,6 @@ export default function bfs(head: BinaryNode<number>, needle: number): boolean {
         // enqueue node's children
         q.push(curr.left);
         q.push(curr.right);
-        
     }
 
     return false;

@@ -13,7 +13,7 @@ export default class Stack<T> {
     }
 
     push(item: T): void {
-        const node = {value: item} as Node<T>;
+        const node = { value: item } as Node<T>;
 
         this.length++;
 
@@ -35,7 +35,7 @@ export default class Stack<T> {
         }
 
         const head = this.head as Node<T>; // save head
-        this.head = head.prev // update new head
+        this.head = head.prev; // update new head
 
         return head.value;
     }

@@ -3,7 +3,7 @@ export default function compare(
     b: BinaryNode<number> | null,
 ): boolean {
     // base cases
-    
+
     // structural check, when meet bottom together after all the comparisons
     if (a === null && b === null) {
         return true;

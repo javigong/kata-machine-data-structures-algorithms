@@ -20,5 +20,5 @@ export default function post_order_search(head: BinaryNode<number>): number[] {
 
     walk(head, path);
 
-    return path;  
+    return path;
 }

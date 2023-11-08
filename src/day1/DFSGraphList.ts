@@ -5,7 +5,7 @@ function walk(
     seen: boolean[],
     path: number[],
 ): boolean {
-  // O(V + E) time complexity, v for vertices, e for edges
+    // O(V + E) time complexity, v for vertices, e for edges
 
     // base cases
 
